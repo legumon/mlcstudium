@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mónica Leguizamón Calcagno — Executive Coach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1612;
+    --bone: #f5f0e8;
+    --warm: #e8dfd0;
+    --gold: #9a7d4e;
+    --gold-light: #c4a97a;
+    --muted: #7a6e62;
+    --line: rgba(154,125,78,0.25);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bone);
+    color: var(--ink);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 4rem;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-cta {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-light);
+    padding-bottom: 2px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .nav-cta:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 4rem 6rem 5rem;
+    position: relative;
+  }
+  .hero-left::after {
+    content: '';
+    position: absolute; right: 0; top: 15%; bottom: 15%;
+    width: 1px; background: var(--line);
+  }
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    font-weight: 300;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+  .hero-statement {
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: var(--muted);
+    max-width: 38ch;
+    margin-bottom: 3.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .hero-statement strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .btn-primary {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--bone);
+    background: var(--ink);
+    padding: 1.1rem 2.5rem;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+    align-self: flex-start;
+  }
+  .btn-primary:hover { background: var(--gold); }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 1.2s 0.3s forwards;
+  }
+  .hero-right img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: sepia(10%) contrast(1.05);
+  }
+  .hero-right-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, var(--bone) 0%, transparent 12%);
+  }
+  .hero-credential {
+    position: absolute;
+    bottom: 3rem; right: 3rem;
+    text-align: right;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.2s forwards;
+  }
+  .hero-credential-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .hero-credential-text {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── PHILOSOPHY ── */
+  .philosophy {
+    padding: 8rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 6rem;
+    align-items: start;
+    border-top: 1px solid var(--line);
+  }
+  .section-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding-top: 0.5rem;
+  }
+  .philosophy-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .philosophy-body em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  /* ── PARA QUIÉN ── */
+  .for-whom {
+    background: var(--ink);
+    color: var(--bone);
+    padding: 8rem 5rem;
+  }
+  .for-whom-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5rem;
+    border-bottom: 1px solid rgba(245,240,232,0.15);
+    padding-bottom: 2rem;
+  }
+  .for-whom-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+  }
+  .for-whom-title em { font-style: italic; color: var(--gold-light); }
+  .profiles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+  }
+  .profile-item {
+    border-top: 1px solid rgba(154,125,78,0.4);
+    padding-top: 1.5rem;
+  }
+  .profile-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .profile-name {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bone);
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+  .profile-desc {
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.55);
+  }
+
+  /* ── DIFERENCIAL ── */
+  .diferencial {
+    padding: 8rem 5rem;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+  }
+  .diferencial-left {}
+  .diferencial-eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .diferencial-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 2.5rem;
+  }
+  .diferencial-title em { font-style: italic; color: var(--gold); }
+  .diferencial-body {
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--muted);
+    margin-bottom: 3rem;
+  }
+  .pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .pillar {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    transition: border-color 0.3s;
+  }
+  .pillar:hover { border-color: var(--gold); }
+  .pillar-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    padding-top: 0.2rem;
+  }
+  .pillar-name {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+  .pillar-desc {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  /* ── SOBRE MÍ ── */
+  .sobre-mi {
+    padding: 8rem 5rem;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+  }
+  .sobre-mi-img {
+    position: relative;
+  }
+  .sobre-mi-img img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: center top;
+    filter: sepia(8%) contrast(1.04);
+  }
+  .sobre-mi-img-label {
+    position: absolute;
+    bottom: -1.5rem; left: -1.5rem;
+    background: var(--ink);
+    color: var(--bone);
+    padding: 1.5rem 2rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+  .sobre-mi-img-label strong {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--gold-light);
+    margin-bottom: 0.3rem;
+  }
+  .sobre-mi-content {}
+  .sobre-mi-eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .sobre-mi-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 2.5rem;
+  }
+  .sobre-mi-title em { font-style: italic; color: var(--gold); }
+  .sobre-mi-bisagra {
+    background: var(--warm);
+    border-left: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin-bottom: 2.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .sobre-mi-body {
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+  .sobre-mi-body strong { color: var(--ink); font-weight: 500; }
+  .sobre-mi-empresas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  .empresa-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    padding: 0.5rem 1rem;
+  }
+
+  .sobre-mi-compromiso {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+  .sobre-mi-compromiso-title {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  /* ── TRAYECTORIA TIMELINE ── */
+  .trayectoria {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2.5rem;
+  }
+  .trayectoria-col-title {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .trayectoria-item {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .trayectoria-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    color: var(--gold);
+    padding-top: 0.15rem;
+    letter-spacing: 0.05em;
+  }
+  .trayectoria-content {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .trayectoria-content strong {
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.1rem;
+  }
+  .trayectoria-content span {
+    color: var(--muted);
+    font-size: 0.72rem;
+  }
+
+  /* ── TESTIMONIOS ── */
+  .testimonios {
+    background: var(--warm);
+    padding: 8rem 5rem;
+    border-top: 1px solid var(--line);
+  }
+  .testimonios-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    margin-bottom: 5rem;
+    align-items: end;
+  }
+  .testimonios-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.2;
+  }
+  .testimonios-title em { font-style: italic; color: var(--gold); }
+  .testimonios-intro {
+    font-size: 0.85rem;
+    line-height: 1.9;
+    color: var(--muted);
+  }
+  .testimonios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .testimonio {
+    background: var(--bone);
+    padding: 2.5rem;
+    position: relative;
+  }
+  .testimonio::before {
+    content: '\201C';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    color: var(--gold-light);
+    opacity: 0.4;
+    line-height: 1;
+    position: absolute;
+    top: 1.2rem; left: 2rem;
+  }
+  .testimonio-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 2rem;
+    padding-top: 2rem;
+  }
+  .testimonio-author {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .testimonio-role {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  /* ── CTA FINAL ── */
+  .cta-section {
+    padding: 10rem 5rem;
+    text-align: center;
+    border-top: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: 'MLC';
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30vw;
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.04;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .cta-eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+  }
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    max-width: 16ch;
+    margin-left: auto; margin-right: auto;
+  }
+  .cta-title em { font-style: italic; color: var(--gold); }
+  .cta-sub {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 3.5rem;
+    max-width: 45ch;
+    margin-left: auto; margin-right: auto;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn-secondary {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-light);
+    padding-bottom: 2px;
+    transition: color 0.3s;
+  }
+  .btn-secondary:hover { color: var(--ink); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2.5rem 5rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-links {
+    display: flex; gap: 2.5rem;
+  }
+  .footer-links a {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { height: 60vw; }
+    .hero-left { padding: 4rem 2rem; }
+    .hero-left::after { display: none; }
+    .philosophy, .diferencial { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 2rem; }
+    .for-whom { padding: 5rem 2rem; }
+    .profiles { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .sobre-mi { grid-template-columns: 1fr; gap: 4rem; padding: 5rem 2rem; }
+    .sobre-mi-img-label { bottom: -1rem; left: 1rem; }
+    .trayectoria { grid-template-columns: 1fr; gap: 2rem; }
+    .testimonios { padding: 5rem 2rem; }
+    .testimonios-header { grid-template-columns: 1fr; }
+    .testimonios-grid { grid-template-columns: 1fr; gap: 2px; }
+    .cta-section { padding: 6rem 2rem; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem; }
+    .for-whom-header { flex-direction: column; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">MLC <span>Studium</span></a>
+  <a href="https://calendly.com/mlcstudium/sesion-1-1" target="_blank" class="nav-cta">Conversemos</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Executive Coach · Buenos Aires</p>
+    <h1 class="hero-name">Mónica<br>Leguizamón<br><em>Calcagno</em></h1>
+    <p class="hero-title">Master Coach & MBA — ABC1 Executive</p>
+    <p class="hero-statement">
+      Trabajo con líderes que han alcanzado el éxito
+      y aun así sienten que <strong>hay algo más</strong> —
+      una versión más auténtica, más potente, más plena
+      de quien son y de lo que pueden crear.
+    </p>
+    <a href="https://calendly.com/mlcstudium/sesion-1-1" target="_blank" class="btn-primary">Agendá una conversación</a>
+  </div>
+  <div class="hero-right">
+    <img src="monica.jpg" alt="Mónica Leguizamón Calcagno">
+    <div class="hero-right-overlay"></div>
+    <div class="hero-credential">
+      <div class="hero-credential-num">39</div>
+      <div class="hero-credential-text">años de trayectoria<br>en liderazgo & HR</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div class="section-label reveal">Filosofía</div>
+  <div class="philosophy-body reveal reveal-delay-1">
+    Los líderes más efectivos se conocen a sí mismos.<br>
+    Actúan desde <em>quiénes son</em> — y desde ahí<br>
+    construyen algo que trasciende su cargo.
+  </div>
+</section>
+
+<!-- PARA QUIÉN -->
+<section class="for-whom">
+  <div class="for-whom-header">
+    <h2 class="for-whom-title reveal">Para quienes<br>ya <em>llegaron</em><br>y quieren más</h2>
+  </div>
+  <div class="profiles">
+    <div class="profile-item reveal">
+      <div class="profile-num">01</div>
+      <div class="profile-name">CEOs & Dueños</div>
+      <div class="profile-desc">Líderes que dirigen organizaciones y buscan claridad estratégica, renovar su visión o transitar una nueva etapa.</div>
+    </div>
+    <div class="profile-item reveal reveal-delay-1">
+      <div class="profile-num">02</div>
+      <div class="profile-name">Gerentes & Directores</div>
+      <div class="profile-desc">Ejecutivos de alta performance que quieren ampliar su impacto, su liderazgo y su presencia en la organización.</div>
+    </div>
+    <div class="profile-item reveal reveal-delay-2">
+      <div class="profile-num">03</div>
+      <div class="profile-name">En transición</div>
+      <div class="profile-desc">Profesionales que cambian de rol, industria o país y necesitan reinventarse desde una base sólida.</div>
+    </div>
+    <div class="profile-item reveal reveal-delay-3">
+      <div class="profile-num">04</div>
+      <div class="profile-name">Líderes con propósito</div>
+      <div class="profile-desc">Quienes sienten el llamado a liderar desde algo más profundo que los resultados — desde su don genuino.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAL -->
+<section class="diferencial">
+  <div class="diferencial-left">
+    <p class="diferencial-eyebrow reveal">Lo que me distingue</p>
+    <h2 class="diferencial-title reveal reveal-delay-1">Filosofía,<br><em>experiencia</em><br>y metodología</h2>
+    <p class="diferencial-body reveal reveal-delay-2">
+      Soy coach con más de 33 años en liderazgo y desarrollo humano en organizaciones reales.
+      Conozco lo que significa tomar decisiones difíciles, liderar equipos
+      y crear sentido en contextos complejos.
+      Traigo esa experiencia viva a cada conversación de coaching.
+    </p>
+    <a href="https://calendly.com/mlcstudium/sesion-1-1" target="_blank" class="btn-primary reveal reveal-delay-3">Primera conversación, sin cargo</a>
+  </div>
+  <div class="pillars">
+    <div class="pillar reveal">
+      <div class="pillar-icon">φ</div>
+      <div>
+        <div class="pillar-name">Filosofía aplicada</div>
+        <div class="pillar-desc">Una base conceptual profunda que da sentido al proceso de coaching más allá de las técnicas.</div>
+      </div>
+    </div>
+    <div class="pillar reveal reveal-delay-1">
+      <div class="pillar-icon">∞</div>
+      <div>
+        <div class="pillar-name">30 años en HR & Liderazgo</div>
+        <div class="pillar-desc">Experiencia real en organizaciones complejas. Entiendo el contexto ejecutivo desde adentro.</div>
+      </div>
+    </div>
+    <div class="pillar reveal reveal-delay-2">
+      <div class="pillar-icon">◇</div>
+      <div>
+        <div class="pillar-name">Programa "Sé Tu Don"</div>
+        <div class="pillar-desc">Metodología propia que trabaja liderazgo desde la conciencia del propio don — singular y auténtico.</div>
+      </div>
+    </div>
+    <div class="pillar reveal reveal-delay-3">
+      <div class="pillar-icon">↗</div>
+      <div>
+        <div class="pillar-name">MBA + Formación Master Coach</div>
+        <div class="pillar-desc">El doble rigor de la gestión y del desarrollo humano, integrados en cada conversación.</div>
+      </div>
+    </div>
+    <div class="pillar reveal reveal-delay-3">
+      <div class="pillar-icon">◈</div>
+      <div>
+        <div class="pillar-name">Afinidad con el mundo tech</div>
+        <div class="pillar-desc">Formación en sistemas y sensibilidad tecnológica. Acompaño a líderes en entornos digitales y organizaciones en transformación — entendiendo su lenguaje desde adentro.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section class="sobre-mi">
+  <div class="sobre-mi-img reveal">
+    <img src="monica.jpg" alt="Mónica Leguizamón Calcagno">
+    <div class="sobre-mi-img-label">
+      <strong>33 años</strong>
+      liderando personas<br>en organizaciones reales
+    </div>
+  </div>
+  <div class="sobre-mi-content">
+    <p class="sobre-mi-eyebrow reveal">Sobre mí</p>
+    <h2 class="sobre-mi-title reveal reveal-delay-1">Vine al coaching<br>desde <em>adentro</em><br>de las organizaciones.</h2>
+
+    <div class="sobre-mi-bisagra reveal reveal-delay-2">
+      Unos días antes de que Deutsche Bank anunciara su salida de Argentina,
+      yo ya había declarado abierta mi empresa de coaching.
+      Fue escuchar mi propio don — y actuar desde él.
+    </div>
+
+    <p class="sobre-mi-body reveal reveal-delay-2">
+      Durante <strong>33 años</strong> estuve del otro lado del escritorio.
+      Como <strong>HR Country Head en Deutsche Bank</strong> y como
+      <strong>HRBP de las áreas de negocios en Comafi</strong>,
+      acompañé a líderes en decisiones críticas, transiciones y momentos
+      donde el negocio y las personas se encuentran.
+    </p>
+    <p class="sobre-mi-body reveal reveal-delay-2">
+      Conozco lo que sostiene una organización.
+      Comprendo el peso de las decisiones con impacto humano real.
+      Y sé — porque lo viví — que el momento más transformador
+      llega cuando un líder actúa desde <strong>quien verdaderamente es</strong>.
+    </p>
+    <p class="sobre-mi-body reveal reveal-delay-3">
+      Eso es lo que trabajo con vos. Tu don — ese que ya está en vos,
+      listo para ponerse en juego.
+    </p>
+    <p class="sobre-mi-body reveal reveal-delay-3">
+      Como coach trabajé con empresas como <strong>Change.org, AVINA, Instituto María Auxiliadora, Algas de Origen</strong>, entre otras.
+      Actualmente soy <strong>Chair Vistage de grupos de empresarios</strong> —
+      acompañando a CEOs y dueños de empresa en su desarrollo como líderes y en la toma de mejores decisiones.
+      Soy también socia de <strong>Olga Armano</strong> en <strong>OM Coaches</strong>, desde donde damos Coaching Organizacional a empresas.
+    </p>
+
+    <div class="trayectoria reveal reveal-delay-3">
+      <div class="trayectoria-col">
+        <div class="trayectoria-col-title">Carrera corporativa & coaching</div>
+        <div class="trayectoria-item">
+          <div class="trayectoria-year">2025 →</div>
+          <div class="trayectoria-content">
+            <strong>Chair Vistage</strong><br>
+            <span>Grupos de empresarios · CEOs y dueños de empresa</span>
+          </div>
+        </div>
+        <div class="trayectoria-item">
+          <div class="trayectoria-year">2024 →</div>
+          <div class="trayectoria-content">
+            <strong>OM Coaches · Socia</strong><br>
+            <span>Coaching Organizacional · con Olga Armano</span>
+          </div>
+        </div>
+        <div class="trayectoria-item">
+          <div class="trayectoria-year">2022–25</div>
+          <div class="trayectoria-content">
+            <strong>Speexx & BLI</strong><br>
+            <span>Coach ejecutiva · proyectos globales</span>
+          </div>
+        </div>
+        <div class="trayectoria-item">
+          <div class="trayectoria-year">2017–19</div>
+          <div class="trayectoria-content">
+            <strong>Comafi · HRBP</strong><br>
+            <span>HR Business Partner · áreas de negocios</span>
+          </div>
+        </div>
+        <div class="trayectoria-item">
+          <div class="trayectoria-year">2015 →</div>
+          <div class="trayectoria-content">
+            <strong>MLC Studium · Fundadora</strong><br>
+            <span>Executive Coaching · ABC1 · Grupos Vistage</span>
+          </div>
+        </div>
+        <div class="trayectoria-item">
+          <div class="trayectoria-year">1988–17</div>
+          <div class="trayectoria-content">
+            <strong>Deutsche Bank · HR Country Head</strong><br>
+            <span>29 años · liderazgo de personas en banca internacional</span>
+          </div>
+        </div>
+        <div class="trayectoria-item">
+          <div class="trayectoria-year">1986–88</div>
+          <div class="trayectoria-content">
+            <strong>Bank of America</strong><br>
+            <span>HR · desarrollo organizacional</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trayectoria-col">
+        <div class="trayectoria-col-title">Mentoría, academia & comunidad</div>
+        <div class="trayectoria-item">
+          <div class="trayectoria-year">2018 →</div>
+          <div class="trayectoria-content">
+            <strong>Universidad de San Andrés · Mentora</strong><br>
+            <span>MBA y EMBA · Escuela de Negocios</span>
+          </div>
+        </div>
+        <div class="trayectoria-item">
+          <div class="trayectoria-year">2016–25</div>
+          <div class="trayectoria-content">
+            <strong>IEI · Mentora</strong><br>
+            <span>Instituto de Estudios Integrales</span>
+          </div>
+        </div>
+        <div class="trayectoria-item">
+          <div class="trayectoria-year">2023</div>
+          <div class="trayectoria-content">
+            <strong>Fundación Empujar · Mentora</strong><br>
+            <span>Inserción laboral de jóvenes · Berazategui</span>
+          </div>
+        </div>
+        <div class="trayectoria-item">
+          <div class="trayectoria-year">2023</div>
+          <div class="trayectoria-content">
+            <strong>ICF Global · Coach Pro Bono</strong><br>
+            <span>International Coaching Federation</span>
+          </div>
+        </div>
+        <div class="trayectoria-item">
+          <div class="trayectoria-year">2015–21</div>
+          <div class="trayectoria-content">
+            <strong>AACOP · Líder de Proyectos</strong><br>
+            <span>Asociación Argentina de Coaching Ontológico</span>
+          </div>
+        </div>
+        <div class="trayectoria-item">
+          <div class="trayectoria-year">2018–22</div>
+          <div class="trayectoria-content">
+            <strong>FICOP · Voluntaria</strong><br>
+            <span>Federación Internacional de Coaching Ontológico</span>
+          </div>
+        </div>
+        <div class="trayectoria-item">
+          <div class="trayectoria-year">2004–06</div>
+          <div class="trayectoria-content">
+            <strong>Hospital Tornú · Voluntaria</strong><br>
+            <span>Cuidados paliativos</span>
+          </div>
+        </div>
+        <div class="trayectoria-item">
+          <div class="trayectoria-year">+</div>
+          <div class="trayectoria-content">
+            <strong>Fundación Cruzada Argentina</strong><br>
+            <span>Consejo de Administración</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sobre-mi-compromiso reveal reveal-delay-3">
+      <p class="sobre-mi-compromiso-title">Formación académica</p>
+      <div class="trayectoria" style="margin-top:1rem;">
+        <div class="trayectoria-col">
+          <div class="trayectoria-item">
+            <div class="trayectoria-year">2008–09</div>
+            <div class="trayectoria-content">
+              <strong>MBA · Universidad de San Andrés</strong><br>
+              <span>Business Administration · Sponsor: Deutsche Bank</span>
+            </div>
+          </div>
+          <div class="trayectoria-item">
+            <div class="trayectoria-year">2007</div>
+            <div class="trayectoria-content">
+              <strong>Posgrado RRHH · Universidad de San Andrés</strong><br>
+              <span>Recursos Humanos · Sponsor: Deutsche Bank</span>
+            </div>
+          </div>
+          <div class="trayectoria-item">
+            <div class="trayectoria-year">2014 →</div>
+            <div class="trayectoria-content">
+              <strong>Licenciatura en Filosofía · UCES</strong><br>
+              <span>29 materias cursadas</span>
+            </div>
+          </div>
+          <div class="trayectoria-item">
+            <div class="trayectoria-year">2003–04</div>
+            <div class="trayectoria-content">
+              <strong>Tecnicatura en Liderazgo · ICP Coaching</strong><br>
+              <span>Organizational Leadership</span>
+            </div>
+          </div>
+        </div>
+        <div class="trayectoria-col">
+          <div class="trayectoria-item">
+            <div class="trayectoria-year">2025</div>
+            <div class="trayectoria-content">
+              <strong>PCC · ICF Professional Certified Coach</strong><br>
+              <span>International Coaching Federation · vigente hasta 2028</span>
+            </div>
+          </div>
+          <div class="trayectoria-item">
+            <div class="trayectoria-year">2023</div>
+            <div class="trayectoria-content">
+              <strong>Master Coach Ontológico Profesional · MCOP</strong><br>
+              <span>AACOP · Asociación Argentina de Coaching Ontológico</span>
+            </div>
+          </div>
+          <div class="trayectoria-item">
+            <div class="trayectoria-year">2016</div>
+            <div class="trayectoria-content">
+              <strong>Diploma en Coaching Internacional · IEI</strong><br>
+              <span>Instituto de Estudios Integrales · Ray Dalton</span>
+            </div>
+          </div>
+          <div class="trayectoria-item">
+            <div class="trayectoria-year">2004</div>
+            <div class="trayectoria-content">
+              <strong>Coach Certificada · ICP Coaching</strong><br>
+              <span>Inicio del camino — formación con Jim Selman</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sobre-mi-bisagra reveal reveal-delay-3" style="margin-top:2.5rem;">
+      Al recibirme en 2004, sentí que algo faltaba — que había más por descubrir. Busqué a Jim Selman, una de las voces más lúcidas del coaching ejecutivo mundial. Me dijeron que estaba retirado. Le escribí igual, y le dije que lo veía como una posibilidad genuina. Con su generosidad característica, aceptó. Nos encontramos, y lo que comenzó como un proceso de coaching se convirtió en dos años de formación profunda junto a él — mientras vivió.
+      <br><br>
+      De Jim viene también mi vínculo con <strong>Olga Armano</strong>, hoy mi socia en OM Coaches: Olga se formó con él, y <strong>AACOP</strong> — la asociación donde fui líder de proyectos durante seis años — nació de un pedido que Jim le hizo a Olga. Todo conectado, todo con raíz.
+      <br><br>
+      La primera tarea que me dio fue declarar mi visión. En marzo de 2006, en Buenos Aires, declaré:
+    </div>
+    <div class="sobre-mi-compromiso reveal reveal-delay-3" style="border-left:3px solid var(--gold);padding:1.8rem 2rem;margin-top:1.5rem;background:var(--warm);">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;line-height:1.8;color:var(--ink);margin-bottom:1rem;">
+        "Participo en la creación e implementación de las siguientes mejores prácticas en Desarrollo Humano, partiendo del compromiso como modo de ser en el mundo, de modo que estas nuevas prácticas hacen posible un mundo mejor para todos."
+      </p>
+      <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);">Declarada en proceso de coaching con Jim Selman · Marzo 2006 · Buenos Aires</p>
+    </div>
+  </div>
+</section>
+
+<!-- ESCRITURA -->
+<section class="philosophy" style="background:var(--ink);color:var(--bone);">
+  <div class="section-label reveal" style="color:var(--gold-light)">Donde escribo</div>
+  <div class="reveal reveal-delay-1">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,2.2vw,2rem);font-weight:300;line-height:1.6;margin-bottom:2.5rem;color:var(--bone);">
+      Escribo sobre liderazgo, don y conciencia.<br>
+      <em style="color:var(--gold-light);">Cada semana y cada mes, en distintos formatos.</em>
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;">
+      <a href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7041069181898780672" target="_blank" style="display:block;padding:1.5rem;border:1px solid rgba(154,125,78,0.4);text-decoration:none;transition:border-color 0.3s;" onmouseover="this.style.borderColor='#c4a97a'" onmouseout="this.style.borderColor='rgba(154,125,78,0.4)'">
+        <div style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.6rem;">Newsletter semanal</div>
+        <div style="font-size:0.85rem;color:var(--bone);line-height:1.5;">Mi Lámpara Encendida<br><span style="color:rgba(245,240,232,0.5);font-size:0.75rem;">LinkedIn · Suscribite</span></div>
+      </a>
+      <a href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7041069181898780672" target="_blank" style="display:block;padding:1.5rem;border:1px solid rgba(154,125,78,0.4);text-decoration:none;transition:border-color 0.3s;" onmouseover="this.style.borderColor='#c4a97a'" onmouseout="this.style.borderColor='rgba(154,125,78,0.4)'">
+        <div style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.6rem;">Newsletter mensual</div>
+        <div style="font-size:0.85rem;color:var(--bone);line-height:1.5;">Bitácora de Viaje<br><span style="color:rgba(245,240,232,0.5);font-size:0.75rem;">LinkedIn · Suscribite</span></div>
+      </a>
+      <a href="https://mlcfilosofia.wordpress.com" target="_blank" style="display:block;padding:1.5rem;border:1px solid rgba(154,125,78,0.4);text-decoration:none;transition:border-color 0.3s;" onmouseover="this.style.borderColor='#c4a97a'" onmouseout="this.style.borderColor='rgba(154,125,78,0.4)'">
+        <div style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.6rem;">Blog</div>
+        <div style="font-size:0.85rem;color:var(--bone);line-height:1.5;">Abriendo Hilos<br><span style="color:rgba(245,240,232,0.5);font-size:0.75rem;">Filosofía aplicada</span></div>
+      </a>
+      <a href="https://laboratorioxalideres.wordpress.com" target="_blank" style="display:block;padding:1.5rem;border:1px solid rgba(154,125,78,0.4);text-decoration:none;transition:border-color 0.3s;" onmouseover="this.style.borderColor='#c4a97a'" onmouseout="this.style.borderColor='rgba(154,125,78,0.4)'">
+        <div style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.6rem;">Blog</div>
+        <div style="font-size:0.85rem;color:var(--bone);line-height:1.5;">Laboratorio para Líderes<br><span style="color:rgba(245,240,232,0.5);font-size:0.75rem;">Distinciones de liderazgo</span></div>
+      </a>
+      <a href="https://monicaleguizamoncalcagno.wordpress.com" target="_blank" style="display:block;padding:1.5rem;border:1px solid rgba(154,125,78,0.4);text-decoration:none;transition:border-color 0.3s;" onmouseover="this.style.borderColor='#c4a97a'" onmouseout="this.style.borderColor='rgba(154,125,78,0.4)'">
+        <div style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.6rem;">Blog personal</div>
+        <div style="font-size:0.85rem;color:var(--bone);line-height:1.5;">Bitácora de viaje<br><span style="color:rgba(245,240,232,0.5);font-size:0.75rem;">Escritos del devenir</span></div>
+      </a>
+      <a href="https://comunicacionxalaarmonia.wordpress.com" target="_blank" style="display:block;padding:1.5rem;border:1px solid rgba(154,125,78,0.4);text-decoration:none;transition:border-color 0.3s;" onmouseover="this.style.borderColor='#c4a97a'" onmouseout="this.style.borderColor='rgba(154,125,78,0.4)'">
+        <div style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:0.6rem;">Blog</div>
+        <div style="font-size:0.85rem;color:var(--bone);line-height:1.5;">Comunicación para la Armonía<br><span style="color:rgba(245,240,232,0.5);font-size:0.75rem;">Comunicación consciente</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonios">
+  <div class="testimonios-header">
+    <h2 class="testimonios-title reveal">Lo que<br>dicen quienes<br><em>trabajaron</em><br>con Mónica</h2>
+    <p class="testimonios-intro reveal reveal-delay-1">
+      Voces reales de clientes, colegas y líderes de organizaciones
+      que trabajaron con Mónica a lo largo de más de 30 años.
+    </p>
+  </div>
+  <div class="testimonios-grid">
+    <div class="testimonio reveal">
+      <p class="testimonio-text">Su capacidad para identificar oportunidades de mejora, acompañar con empatía y aportar estrategias claras de crecimiento han marcado una diferencia real en mi desempeño y el de mi equipo.</p>
+      <div class="testimonio-author">Nicolás Gancedo von der Heyde</div>
+      <div class="testimonio-role">Gerente Comercial Regional · Dividenz</div>
+    </div>
+    <div class="testimonio reveal reveal-delay-1">
+      <p class="testimonio-text">No solo por sus sólidos conocimientos y sus incontables herramientas de coaching, sino también por la pasión con la cual desempeña su trabajo. Siempre con una sonrisa y un preciso análisis, hacen que se disfrute la experiencia.</p>
+      <div class="testimonio-author">Gerardo Garona</div>
+      <div class="testimonio-role">MBA UdeSA · Cliente de coaching</div>
+    </div>
+    <div class="testimonio reveal reveal-delay-2">
+      <p class="testimonio-text">Mónica es una excelente coach, tiene una escucha muy aguda y una gran experiencia. Las conversaciones son muy valiosas acompañadas por una amorosidad y una profesionalidad perfectamente equilibradas.</p>
+      <div class="testimonio-author">Doris Sepliarsky</div>
+      <div class="testimonio-role">Clienta · Google Reviews ⭐⭐⭐⭐⭐</div>
+    </div>
+    <div class="testimonio reveal">
+      <p class="testimonio-text">Mónica has a real humble confidence about her. Her background and credentials in coaching are superb and I would absolutely recommend her for whatever she pursues in the professional realm.</p>
+      <div class="testimonio-author">Stephen Narkevitz</div>
+      <div class="testimonio-role">Speexx Language & Business Coaching</div>
+    </div>
+    <div class="testimonio reveal reveal-delay-1">
+      <p class="testimonio-text">Es un ser humano que sabe relacionarse y generar empatía con todo el mundo. Está en línea con lo que piensa, dice y hace. Es un ser integrado, lo cual hoy es casi un milagro.</p>
+      <div class="testimonio-author">Tomás Olivieri Acosta</div>
+      <div class="testimonio-role">Coach Gestáltico · Fellow de Ashoka</div>
+    </div>
+    <div class="testimonio reveal reveal-delay-2">
+      <p class="testimonio-text">Excelente profesional comprometida con lo que hace, siempre te lleva a pensar para encontrar otra perspectiva. Una guía excepcional en cada proceso.</p>
+      <div class="testimonio-author">Adriana Bourgeois</div>
+      <div class="testimonio-role">Clienta · Google Reviews ⭐⭐⭐⭐⭐</div>
+    </div>
+    <div class="testimonio reveal">
+      <p class="testimonio-text">Posee un empuje fuera de lo común para todo lo que se refiere a trabajo grupal y empresarial. Una visión aguda de las necesidades del cliente. Compartir procesos y aprendizajes con ella es un honor.</p>
+      <div class="testimonio-author">Lilian Judith Cohen</div>
+      <div class="testimonio-role">Senior Coach Ontológico Profesional</div>
+    </div>
+    <div class="testimonio reveal reveal-delay-1">
+      <p class="testimonio-text">Mónica is a very talented facilitator and cares about her work and her clients. I am fortunate to work with her and grateful for her wisdom.</p>
+      <div class="testimonio-author">Wendy Wollner</div>
+      <div class="testimonio-role">CEO · Leadership & Organizational Development</div>
+    </div>
+    <div class="testimonio reveal reveal-delay-2">
+      <p class="testimonio-text">Hermoso espacio de aprendizaje, respeto y confianza donde las mujeres nos acompañamos a liderar nuestra vida. Una experiencia transformadora.</p>
+      <div class="testimonio-author">Anabella Martínez Canter Saiz</div>
+      <div class="testimonio-role">Clienta · Google Reviews ⭐⭐⭐⭐⭐</div>
+    </div>
+    <div class="testimonio reveal">
+      <p class="testimonio-text">Monica is a very grounded professional committed to people and excellence. She is a leader and visionary who has demonstrated courage and conviction in each and every situation in which I have had the privilege to know her.</p>
+      <div class="testimonio-author">Jim Selman</div>
+      <div class="testimonio-role">Author, Speaker & Executive Coach</div>
+    </div>
+    <div class="testimonio reveal reveal-delay-1">
+      <p class="testimonio-text">Trabajar con Mónica es una experiencia de profundidad y presencia. Su capacidad de sostener procesos organizacionales con rigor, calidez y visión sistémica la convierten en una socia extraordinaria para el Coaching Organizacional.</p>
+      <div class="testimonio-author">Olga Armano</div>
+      <div class="testimonio-role">Socia · OM Coaches · Coaching Organizacional</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <p class="cta-eyebrow reveal">El próximo paso</p>
+  <h2 class="cta-title reveal reveal-delay-1">Una conversación<br>puede <em>cambiarlo</em><br>todo</h2>
+  <p class="cta-sub reveal reveal-delay-2">
+    No hay formulario, no hay carrito de compras.
+    Solo una conversación entre dos personas —
+    para ver si tiene sentido trabajar juntos.
+  </p>
+  <div class="cta-buttons reveal reveal-delay-3">
+    <a href="https://calendly.com/mlcstudium/sesion-1-1" target="_blank" class="btn-primary">Agendá tu sesión de cortesía</a>
+    <a href="https://wa.me/5491165197078" target="_blank" class="btn-secondary">WhatsApp</a>
+    <a href="#" onclick="window.location.href='mailto:'+'monica'+'@'+'mlcstudium.com'; return false;" class="btn-secondary">monica&#64;mlcstudium.com</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">MLC <span>Studium</span> — The Gift Based Leadership Bureau</div>
+  <nav class="footer-links">
+    <a href="https://calendly.com/mlcstudium/sesion-1-1" target="_blank">Agendá una sesión</a>
+    <a href="https://wa.me/5491165197078" target="_blank">WhatsApp</a>
+    <a href="#" onclick="window.location.href='mailto:'+'monica'+'@'+'mlcstudium.com'; return false;">monica&#64;mlcstudium.com</a>
+    <a href="https://www.linkedin.com/in/monicaleguizamon/" target="_blank">LinkedIn</a>
+    <a href="https://www.instagram.com/mlcstudium" target="_blank">Instagram</a>
+    <a href="https://www.tiktok.com/@mlcstudium" target="_blank">TikTok</a>
+    <a href="https://www.facebook.com/mlcstudium" target="_blank">Facebook</a>
+    <a href="https://x.com/mlcstudium" target="_blank">X</a>
+    <a h
